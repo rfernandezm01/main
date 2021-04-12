@@ -8,6 +8,7 @@ public class Main {
     static Libreta libreta = new Libreta();
 
     public static void main(String[] args) {
-	Menu Menu = new Menu();
+        PantallaMenu pantallaMenu = new PantallaMenu();
+        while(pantallaMenu.mostrar()) { }
     }
 }

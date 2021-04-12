@@ -1,4 +1,8 @@
-package com.company;
+package  com.company ;
 
-public class Libreta {
+import  java.util.ArrayList ;
+import  java.util.List ;
+
+public  class  Libreta {
+    List < Libreta > libretas =  new  ArrayList <> ();
 }

@@ -52,11 +52,17 @@ public class Main {
     for (WebElement historia : his){
       System.out.println(historia.getText());
     }
-    driver.findElement(By.name("Expandir")).click();
 
+
+    List<WebElement> collapsibles = driver.findElement(By.className("mw-parser-output")).findElements(By.className("mw-collapsible-text"));
+
+    for (WebElement collapsible : collapsibles) {
+      collapsible.click();
+    }
 
     driver.close();
 
   }
 
 }
+

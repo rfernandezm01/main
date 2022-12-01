@@ -9,20 +9,22 @@ import org.openqa.selenium.remote.DesiredCapabilities;
 import java.io.File;
 import java.util.List;
 import java.util.NoSuchElementException;
+import java.util.Scanner;
 
 public class Main {
 
   public static void main(String[] args) {
+    Scanner scan = new Scanner(System.in);
     System.out.println(System.getenv("PATH"));
     System.out.println(System.getenv("HOME"));
-  //  System.out.println(System.getenv(""));
+    //  System.out.println(System.getenv(""));
 
     System.setProperty("webdriver.gecko.driver", "src/main/resources/geckodriver");
-   // File pathBinary = new File("src/main/resources/firefox");
-  //  FirefoxBinary firefoxBinary = new FirefoxBinary(pathBinary);
-   // DesiredCapabilities desired = new DesiredCapabilities();
+    // File pathBinary = new File("src/main/resources/firefox");
+    //  FirefoxBinary firefoxBinary = new FirefoxBinary(pathBinary);
+    // DesiredCapabilities desired = new DesiredCapabilities();
     FirefoxOptions options = new FirefoxOptions();
-   // desired.setCapability(FirefoxOptions.FIREFOX_OPTIONS, options.setBinary(firefoxBinary));
+    // desired.setCapability(FirefoxOptions.FIREFOX_OPTIONS, options.setBinary(firefoxBinary));
     WebDriver driver = new FirefoxDriver(options);
     driver.get("https://genshin-impact.fandom.com/es/wiki/Wiki_Genshin_Impact");
     String title = driver.getTitle();
@@ -35,34 +37,87 @@ public class Main {
     List<WebElement> cardLinks = driver.findElements(By.className("card-link"));
 
 
-
     for (WebElement cardLink : cardLinks) {
       System.out.println(cardLink.getText());
     }
-    driver.findElement(By.linkText("Shogun Raiden")).click();
-    System.out.println("Title of page is: " + driver.getTitle());
+    boolean salir = false;
+    while(!salir){
+    System.out.println("Que quieres scriptear");
+    System.out.println("1- Personaje, 2- Región, 3- Arma, 4- Salir");
+    int usuario = scan.nextInt();
 
 
-    List<WebElement> ps = driver.findElements(By.tagName("p"));
-    List<WebElement> his = driver.findElements(By.className("mw-collapsible"));
+    switch (usuario) {
+      case 1:
+        driver.findElement(By.linkText("Shogun Raiden")).click();
+        System.out.println("Title of page is: " + driver.getTitle());
 
-    for (WebElement p : ps){
-      System.out.println(p.getText());
+        List<WebElement> ps = driver.findElements(By.tagName("p"));
+        List<WebElement> his = driver.findElements(By.className("mw-collapsible"));
+
+        for (WebElement p : ps) {
+          System.out.println(p.getText());
+        }
+        for (WebElement historia : his) {
+          System.out.println(historia.getText());
+        }
+
+
+        List<WebElement> collapsibles = driver.findElement(By.className("mw-parser-output")).findElements(By.className("mw-collapsible-text"));
+
+        for (WebElement collapsible : collapsibles) {
+          collapsible.click();
+        }
+        break;
+
+      case 2:
+        driver.findElement(By.linkText("Shogun Raiden")).click();
+        System.out.println("Title of page is: " + driver.getTitle());
+
+        driver.get("https://genshin-impact.fandom.com/es/wiki/Inazuma");
+        System.out.println("Title of page is: " + driver.getTitle());
+
+        List<WebElement> ps2 = driver.findElements(By.tagName("p"));
+        List<WebElement> his2 = driver.findElements(By.className("mw-collapsible"));
+
+        for (WebElement p : ps2) {
+          System.out.println(p.getText());
+        }
+        for (WebElement historia : his2) {
+          System.out.println(historia.getText());
+        }
+        break;
+
+      case 3:
+        driver.findElement(By.linkText("Shogun Raiden")).click();
+        System.out.println("Title of page is: " + driver.getTitle());
+
+        driver.get("https://genshin-impact.fandom.com/es/wiki/Lanza");
+        System.out.println("Title of page is: " + driver.getTitle());
+
+        List<WebElement> ps3 = driver.findElements(By.tagName("p"));
+        List<WebElement> his3 = driver.findElements(By.className("mw-collapsible"));
+
+        for (WebElement p : ps3) {
+          System.out.println(p.getText());
+        }
+        for (WebElement historia : his3) {
+          System.out.println(historia.getText());
+        }
+        break;
+      case 4:
+        break;
+
+      default:
+        System.out.println("Esta opción no esta permitida");
+        break;
     }
-    for (WebElement historia : his){
-      System.out.println(historia.getText());
-    }
-
-
-    List<WebElement> collapsibles = driver.findElement(By.className("mw-parser-output")).findElements(By.className("mw-collapsible-text"));
-
-    for (WebElement collapsible : collapsibles) {
-      collapsible.click();
-    }
+  }
 
     driver.close();
 
   }
 
 }
+
 

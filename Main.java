@@ -1,4 +1,3 @@
-import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.firefox.FirefoxBinary;
@@ -40,8 +39,8 @@ public class Main {
     for (WebElement cardLink : cardLinks) {
       System.out.println(cardLink.getText());
     }
-    boolean salir = false;
-    while(!salir){
+    int entrar = 0;
+    while(entrar == 0){
     System.out.println("Que quieres scriptear");
     System.out.println("1- Personaje, 2- Región, 3- Arma, 4- Salir");
     int usuario = scan.nextInt();
@@ -60,13 +59,6 @@ public class Main {
         }
         for (WebElement historia : his) {
           System.out.println(historia.getText());
-        }
-
-
-        List<WebElement> collapsibles = driver.findElement(By.className("mw-parser-output")).findElements(By.className("mw-collapsible-text"));
-
-        for (WebElement collapsible : collapsibles) {
-          collapsible.click();
         }
         break;
 
@@ -106,6 +98,7 @@ public class Main {
         }
         break;
       case 4:
+        entrar++;
         break;
 
       default:
@@ -114,10 +107,10 @@ public class Main {
     }
   }
 
-    driver.close();
-
   }
 
+}
+ driver.close();
 }
 
 

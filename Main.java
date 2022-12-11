@@ -119,11 +119,10 @@ public class Main {
         break;
     }
   }
-
+ driver.close();
   }
 
 }
- driver.close();
-}
+ 
 
 
